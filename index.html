@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="BNIチャプター メンバー紹介" />
+    <title>メンバー紹介 | BNI Chapter</title>
+    <!-- スタイルは assets/css/style.css に分離（GitHub Pages でもそのまま動きます） -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=Playfair+Display:wght@600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!--
+    【このファイルで編集する主な場所】
+    ・タイトルや説明文（<title> / hero 内のテキスト）
+    ・GAS の URL は assets/js/main.js の CONFIG.webAppUrl を編集してください
+  -->
+
+    <header class="site-header">
+      <div class="site-header__inner">
+        <p class="site-header__eyebrow">Business Network International</p>
+        <h1 class="site-header__title">メンバー紹介</h1>
+        <p class="site-header__lead">
+          スプレッドシートを更新すると、このページの内容も自動で反映されます。
+        </p>
+      </div>
+    </header>
+
+    <main class="main">
+      <!-- ローディング / エラー表示（JS が制御） -->
+      <section class="status" id="status" aria-live="polite">
+        <p class="status__message" id="statusMessage">
+          データを読み込み中です…
+        </p>
+      </section>
+
+      <!-- 絞り込み・検索 -->
+      <section class="toolbar" id="toolbar" hidden>
+        <div class="toolbar__row">
+          <label class="field">
+            <span class="field__label">カテゴリー</span>
+            <select
+              class="field__control"
+              id="categoryFilter"
+              aria-label="カテゴリーで絞り込み"
+            >
+              <option value="__all__">すべて</option>
+            </select>
+          </label>
+
+          <label class="field field--grow">
+            <span class="field__label">検索</span>
+            <input
+              class="field__control"
+              type="search"
+              id="searchInput"
+              placeholder="名前・会社・紹介文などで検索"
+              autocomplete="off"
+              aria-label="メンバー検索"
+            />
+          </label>
+        </div>
+        <p class="toolbar__meta" id="resultCount"></p>
+      </section>
+
+      <!-- メンバーカード一覧 -->
+      <section class="members" id="membersSection" hidden>
+        <ul class="member-grid" id="memberGrid"></ul>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p class="site-footer__text">© BNI Chapter Member Directory</p>
+    </footer>
+
+    <script src="assets/js/main.js" defer></script>
+  </body>
+</html>
