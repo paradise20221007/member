@@ -21,7 +21,7 @@ const CONFIG = {
    * 例: "https://script.google.com/macros/s/xxxx/exec"
    */
   webAppUrl:
-    "https://script.google.com/macros/s/AKfycbxfoGrPPA7c7cfoeuKvVSi8OBSHAZy8fyo3fPKwXZJMR8HmpuG4-EZWXbKJj6gobJQmJg/exec",
+    "https://script.google.com/macros/s/AKfycbzTERLPCOOMPR0E71mTMxgtdyyVchXHjjamBjFPPlthU5bQlHPsq35jS64riVFGbRieTA/exec",
 
   /**
    * 写真が空のときに使う画像（任意のURLに差し替え可）
@@ -55,6 +55,7 @@ const MEMBER_FIELDS = {
   furigana: { key: "furigana", label: "フリガナ" },
   company: { key: "company", label: "会社名" },
   category: { key: "category", label: "カテゴリー" },
+  mail: { key: "mail", label: "メールアドレス" },
   tagline: { key: "tagline", label: "一言紹介" },
   referral: { key: "referral", label: "紹介してほしい人" },
   photoUrl: { key: "photoUrl", label: "写真URL" },
@@ -179,6 +180,7 @@ function buildMemberCard(m) {
   const furigana = str(m[MEMBER_FIELDS.furigana.key]);
   const company = str(m[MEMBER_FIELDS.company.key]);
   const category = str(m[MEMBER_FIELDS.category.key]);
+  const mail = str(m[MEMBER_FIELDS.mail.key]);
   const tagline = str(m[MEMBER_FIELDS.tagline.key]);
   const referral = str(m[MEMBER_FIELDS.referral.key]);
   const photoRaw = str(m[MEMBER_FIELDS.photoUrl.key]);
@@ -199,6 +201,7 @@ function buildMemberCard(m) {
     <p class="member-card__furigana"></p>
       <p class="member-card__category"></p>
       <p class="member-card__company"></p>
+      <p class="member-card__mail"></p>
       <p class="member-card__tagline"></p>
       ${
         referral
@@ -233,7 +236,12 @@ function buildMemberCard(m) {
   }
 
   li.querySelector(".member-card__company").textContent = company;
+  const mailEl = li.querySelector(".member-card__mail");
 
+  if (mailEl) {
+    mailEl.textContent = mail;
+    mailEl.hidden = !mail;
+  }
   const tagEl = li.querySelector(".member-card__tagline");
   tagEl.textContent = tagline;
   tagEl.hidden = !tagline;
